@@ -8,15 +8,13 @@ const preview_uas = new Set([
   'Twitterbot/1.0',
 ])
 
+const FAKE_URL = 'https://twitter.com/BurnerWah'
+const RICKROLL = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+
 app.get('/*', (ctx) => {
   const { headers } = ctx.req
   const ua = headers.get('User-Agent')
-  return ctx.redirect(
-    preview_uas.has(ua || '')
-      ? 'https://twitter.com/BurnerWah'
-      : 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-    301,
-  )
+  return ctx.redirect(preview_uas.has(ua || '') ? FAKE_URL : RICKROLL, 301)
 })
 
 export default app
