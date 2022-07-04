@@ -1,3 +1,5 @@
+import app from './app'
+
 export interface Env {
   // Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
   // MY_KV_NAMESPACE: KVNamespace;
@@ -15,6 +17,6 @@ export default {
     env: Env,
     ctx: ExecutionContext,
   ): Promise<Response> {
-    return new Response('Hello World!')
+    return app.fetch(request, env, ctx)
   },
 }
